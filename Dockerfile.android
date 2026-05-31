@@ -1,0 +1,24 @@
+# Stage 1: Build the Flutter Android application
+FROM ghcr.io/cirruslabs/flutter:stable AS build-env
+
+# Set working directory
+WORKDIR /app
+
+# Copy pubspec files first for better layer caching
+COPY pubspec.yaml pubspec.lock* ./
+
+# Get dependencies using BuildKit cache mounts to speed up dependency resolution
+RUN --mount=type=cache,target=/root/.pub-cache \
+    flutter pub get
+
+# Copy all source files
+COPY . .
+
+# Build Android APK using cache for gradle and pub
+RUN --mount=type=cache,target=/root/.pub-cache \
+    --mount=type=cache,target=/root/.gradle,id=gradle-cache-v3 \
+    flutter build apk --release --no-tree-shake-icons
+
+# Stage 2: Export stage to output the APK directly to the host
+FROM scratch AS export-stage
+COPY --from=build-env /app/build/app/outputs/flutter-apk/app-release.apk /

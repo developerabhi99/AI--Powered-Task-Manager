@@ -1,0 +1,9 @@
+.git/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+build/
+flutter/
+Dockerfile
+.dockerignore
+*.log

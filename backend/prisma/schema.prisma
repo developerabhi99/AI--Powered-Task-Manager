@@ -1,0 +1,50 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Category {
+  id            String @id
+  name          String
+  colorValue    String
+  iconCodePoint Int
+  tasks         Task[]
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Task {
+  id              String    @id
+  title           String
+  description     String    @default("")
+  dueDate         DateTime
+  priority        String    @default("medium") // "low", "medium", "high"
+  isCompleted     Boolean   @default(false)
+  duration        Int       @default(0) // Task duration in minutes
+  reminderMinutes Int       @default(-1) // Task reminder before start in minutes
+  
+  category        Category  @relation(fields: [categoryId], references: [id])
+  categoryId      String
+  
+  subtasks        Subtask[]
+
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+model Subtask {
+  id          String   @id
+  title       String
+  isCompleted Boolean  @default(false)
+  
+  task        Task     @relation(fields: [taskId], references: [id], onDelete: Cascade)
+  taskId      String
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

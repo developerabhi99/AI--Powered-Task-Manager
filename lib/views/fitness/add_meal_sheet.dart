@@ -103,7 +103,7 @@ class _AddMealSheetState extends State<AddMealSheet> {
             child: ElevatedButton(
               onPressed: _saveMeal,
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
+                backgroundColor: AppColors.primaryBlue,
                 foregroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),

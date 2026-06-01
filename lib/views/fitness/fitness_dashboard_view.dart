@@ -75,14 +75,14 @@ class _FitnessDashboardViewState extends State<FitnessDashboardView> {
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [AppColors.primary, AppColors.accent],
+          colors: [AppColors.primaryBlue, AppColors.accentPurple],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(32),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withOpacity(0.3),
+            color: AppColors.primaryBlue.withOpacity(0.3),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
@@ -156,12 +156,12 @@ class _FitnessDashboardViewState extends State<FitnessDashboardView> {
             Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: isCompleted ? Colors.green : AppColors.primary.withOpacity(0.1),
+                color: isCompleted ? Colors.green : AppColors.primaryBlue.withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
               child: Icon(
                 Icons.fitness_center_rounded,
-                color: isCompleted ? Colors.white : AppColors.primary,
+                color: isCompleted ? Colors.white : AppColors.primaryBlue,
               ),
             ),
             const SizedBox(width: 16),
@@ -199,7 +199,7 @@ class _FitnessDashboardViewState extends State<FitnessDashboardView> {
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             IconButton(
-              icon: const Icon(Icons.add_circle_outline_rounded, color: AppColors.primary),
+              icon: const Icon(Icons.add_circle_outline_rounded, color: AppColors.primaryBlue),
               onPressed: () {
                 showModalBottomSheet(
                   context: context,
@@ -237,7 +237,7 @@ class _FitnessDashboardViewState extends State<FitnessDashboardView> {
                   minHeight: 10,
                   backgroundColor: isDark ? Colors.white10 : Colors.grey[200],
                   valueColor: AlwaysStoppedAnimation<Color>(
-                    calorieProgress > 1.0 ? Colors.red : AppColors.accent,
+                    calorieProgress > 1.0 ? Colors.red : AppColors.accentPurple,
                   ),
                 ),
               ),

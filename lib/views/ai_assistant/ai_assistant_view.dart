@@ -485,6 +485,7 @@ class _AiAssistantViewState extends State<AiAssistantView> {
           ),
         ],
       ),
+      ),
     );
   }
 }
